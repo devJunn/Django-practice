@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h1>완료한 TODO 목록</h1>
+    <p>
+        <a href="" class=btn style="color: white">invisible</a>
+        <a href="{% url 'todo:todo_list' %}" class="btn btn-primary" style="float:right">돌아가기</a>
+    </p>
+    {% for done in done_list %}
+    <ul class="list-group">
+        <li class="list-group-item">
+            <a href="{% url 'todo:todo_detail' done.pk %}">{{done.title}}</a>
+            {% if done.important %}
+            <span class="badge badge-danger" style="background-color:red; color:white">!</span>
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock content %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h1>TODO 목록 앱</h1>
+    <p>
+        <a href="{% url 'todo:todo_post' %}"><i class="bi bi-clipboard-plus"></i>Add TODO</a>
+        <a href="{% url 'todo:done_list' %}" class="btn btn-primary" style="float:right">완료한 TODO 목록</a>
+    </p>
+    <ul class="list-group">
+        {% for todo in todo_list %}
+        <li class="list-group-item">
+            <a href="{% url 'todo:todo_detail' todo.pk %}">{{todo.title}}</a>
+            {% if todo.important %}
+            <span class="badge badge-danger" style="background-color:red; color:white">!</span>
+            {% endif %}
+            <div style="float:right">
+                <a href="{% url 'todo:done' todo.pk %}" class="btn btn-success">완료</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock content %}

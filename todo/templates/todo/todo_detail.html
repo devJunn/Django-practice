@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class=container>
+    <h1>TODO 상세보기</h1>
+    <div class=container>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card" style="width: 20rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">{{todo.title}}</h5>
+                      <p class="card-text">{{todo.description}}</p>
+                      <p>
+                        <a href="{% url 'todo:todo_edit' todo.pk %}" class="btn btn-primary">수정하기</a>
+                        <a href="{% url 'todo:todo_list' %}" class="btn btn-primary">목록으로</a>
+                        <a href="{'% url 'todo:todo_delete' todo.pk %}" class="btn btn-primary">삭제하기</a>
+                      </p>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
