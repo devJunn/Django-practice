@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Index</h1>
+{% if user.is_authenticated %}
+<p>{{ user }}님 반갑습니다!</p>
+<a href="{% url 'accounts:update' %}" class="btn btn-primary" style="margin-left: 10px;">프로필 수정</a>
+<form action="{% url 'accounts:logout' %}" method="POST" style="float: left">
+    {% csrf_token %}
+    <button class="btn btn-success">logout</button>
+</form>
+{% else %}
+<a href="{% url 'accounts:signup' %}" class="btn btn-primary" style="margin-left: 10px;">Sign up</a>
+<a href="{% url 'accounts:delete' %}" class="btn btn-danger" style="margin-left: 5px;">Sign out</a>
+<form action="{% url 'accounts:login' %}" method="POST" style="float: left">
+    {% csrf_token %}
+    <button class="btn btn-success">login</button>
+</form>
+{% endif %}
+<hr>
+{% for article in articles %}
+<div>
+    <p>제목: {{article.title}}</p>
+</div>
+<hr>
+{% endfor %}
+{% endblock  %}
